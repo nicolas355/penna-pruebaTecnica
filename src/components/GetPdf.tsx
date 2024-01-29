@@ -7,7 +7,6 @@ interface PdfFile {
 }
 
 const GetPdf = () => {
-
   const [pdf, setPDf] = useState<PdfFile[]>([]);
 
   useEffect(() => {
@@ -26,27 +25,20 @@ const GetPdf = () => {
 
   return (
     <div>
-
-        <h2 className="text-3xl text-center text-blue-400">PDF</h2>
-
+      <h2 className="text-3xl text-center text-blue-400">PDF</h2>
 
       <ul>
         {pdf.map((file) => (
           <>
-          <div className="border flex justify-between">
+            <div className="border flex justify-between">
+              <p>Titulo de Pdf {file.titulo} </p>
 
-            <p>Titulo de Pdf {file.titulo} </p>
-
-                <div className="p-5 ">
-
-            <Button  href={file.path} variant="contained">
-              Ver Pdf
-            </Button>
-                </div>
-          </div>
-         
-
-
+              <div className="p-5 ">
+                <Button href={file.path} variant="contained">
+                  Ver Pdf
+                </Button>
+              </div>
+            </div>
           </>
         ))}
       </ul>

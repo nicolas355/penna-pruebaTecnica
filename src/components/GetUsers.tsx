@@ -34,8 +34,8 @@ const GetUsers = () => {
             <>
             <div className='border mb-3'>
               <p className='mb-2'>Nombre: {user.nombre}</p>
-              <p className='mb-2'>Email: {user.numero}</p>
-              <p className='mb-2'>Email: {user.apellido}</p>
+              <p className='mb-2'>Telefono: {user.numero}</p>
+              <p className='mb-2'>Apellido: {user.apellido}</p>
               <p className='mb-2'>Fecha: {new Date(user.fecha).toLocaleDateString()}</p>
 
             </div>

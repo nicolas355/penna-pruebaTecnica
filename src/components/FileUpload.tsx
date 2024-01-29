@@ -3,7 +3,7 @@ import { styled } from "@mui/material/styles";
 import Button from "@mui/material/Button";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import { TextField } from "@mui/material";
-import { FormControl } from "@mui/material";
+
 import { api } from "../lib/api";
 import { useState } from "react";
 import axios from 'axios'
@@ -27,32 +27,41 @@ interface Props {
 export const FileUpload: React.FC<Props> = ({ type }) => {
   const [title, setTitle] = useState<string>("");
   const [file, setFile] = useState<any>(null);
+  const [image, setImage] = useState<any>(null);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("titulo", title);
-    formData.append("file", file);
+   
 
     if (type === "image") {
-     // await api.sendImage(formData);
-
-     try {
-      
-
-      axios.post('http://localhost:3001/api/prueba/image', formData, {
-        headers: 
-       { 'Content-Type': 'multipart/form-data' } })
-
-     } catch (error) {
-      console.error(error)
+      const formData = new FormData();
+      formData.append("titulo", title);
+      formData.append("image", image);
+      console.log(formData)
+     
+      try {
+         await api.sendImage(formData);
+      } catch (error) {
+         console.error(error)
+      }
+     
+      try {
+         await axios.post('http://localhost:3001/api/prueba/image', formData, {
+           headers: { 'Content-Type': 'multipart/form-data' }
+         });
+      } catch (error) {
+         console.error(error)
+      }
      }
 
-
-    }
-
     if (type === "pdf") {
+
+      const formData = new FormData();
+      formData.append("titulo", title);
+      formData.append("file", file);
+
+
       await api.sendPdf(formData);
     }
   };
@@ -61,11 +70,12 @@ export const FileUpload: React.FC<Props> = ({ type }) => {
     setTitle(e.target.value);
   };
 
-  const handleFileChange = (e: any) => {
-    //setFile(e.target?.files[0]);
-
-    setFile(e.target.files[0]);
-  };
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+       setFile(e.target.files[0]);
+       setImage(e.target.files[0]);
+    }
+   };
 
   return (
     <>
@@ -75,7 +85,7 @@ export const FileUpload: React.FC<Props> = ({ type }) => {
         <TextField
           onChange={handleTitleChange}
           id="outlined-basic"
-          label="Outlined"
+          label="Title"
           variant="outlined"
           name="titulo"
           required
@@ -88,7 +98,7 @@ export const FileUpload: React.FC<Props> = ({ type }) => {
           className=""
           startIcon={<CloudUploadIcon />}
         >
-          Upload file
+      Subir Archivo
           <VisuallyHiddenInput
             required
             accept={type === "image" ? "image/*" : "application/pdf"}

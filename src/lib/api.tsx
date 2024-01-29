@@ -26,7 +26,8 @@ const sendImage = async (file) => {
   try {
     const response = await axios.post(endpoints.image, file, {
       headers: {
-        "Content-Type": "multipart/form-data",
+    
+        'Content-Type': 'multipart/form-data'
       },
     });
 
@@ -64,7 +65,7 @@ const getPdf = async () => {
 const getImage = async () => {
   try {
     const response = await axios.get(endpoints.image);
-    console.log("Archivos de Imagen obtenidos exitosamente:", response.data);
+    return response;
   } catch (error) {
     console.error("Error al obtener archivos de imagen:", error.response.data);
   }
