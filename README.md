@@ -1,8 +1,52 @@
-# React + Vite
+# Prerequisitos
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+- Node >= 18
 
-Currently, two official plugins are available:
+# Preparando entorno de desarrollo
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+### Instalar dependencias
+
+`npm install`
+
+Crear un archivo `.env` y pegar las variables que se encuentran en `.env.template` (Solo se puede cambiar el valor de `PORT` si se desea)
+
+
+### Generar las migraciones
+
+`npm run migration:dev`
+
+### Crear carpetas para guardar los archivos
+
+En la raíz del proyecto se deben crear dos carpetas `images` y `pdf`.
+
+### Levantar el servidor
+
+`npm run dev`
+
+## Endpoints
+
+### Users
+GET y POST `/api/prueba/users`
+
+- Post user recibe `nombre`(string), `apellido`(string), `numero`(number) y `fecha`(date)
+
+GET by id `/api/prueba/users/:id`
+
+### Images
+POST y GET  `/api/prueba/image`
+
+- Post image recibe `titulo`(string) y el archivo imagen
+
+GET by Name  `/api/prueba/image/name/:name`
+
+GET by Id  `/api/prueba/image/:id`
+
+### Pdf
+GET y POST `/api/prueba/pdf`
+
+- Post pdf recibe `titulo`(string) y el archivo pdf
+
+GET by Name  `/api/prueba/pdf/name/:name`
+
+GET by Id  `/api/prueba/pdf/:id`
+
