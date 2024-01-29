@@ -6,7 +6,7 @@ import { TextField } from "@mui/material";
 import { FormControl } from "@mui/material";
 import { api } from "../lib/api";
 import { useState } from "react";
-
+import axios from 'axios'
 
 const VisuallyHiddenInput = styled("input")({
   clip: "rect(0 0 0 0)",
@@ -36,7 +36,20 @@ export const FileUpload: React.FC<Props> = ({ type }) => {
     formData.append("file", file);
 
     if (type === "image") {
-      await api.sendImage(formData);
+     // await api.sendImage(formData);
+
+     try {
+      
+
+      axios.post('http://localhost:3001/api/prueba/image', formData, {
+        headers: 
+       { 'Content-Type': 'multipart/form-data' } })
+
+     } catch (error) {
+      console.error(error)
+     }
+
+
     }
 
     if (type === "pdf") {
@@ -68,7 +81,8 @@ export const FileUpload: React.FC<Props> = ({ type }) => {
           required
           className=""
         />
-        <Button
+      <div className="mt-2">
+      <Button
           component="label"
           variant="contained"
           className=""
@@ -83,10 +97,13 @@ export const FileUpload: React.FC<Props> = ({ type }) => {
             onChange={handleFileChange}
           />
         </Button>
+      </div>
 
-        <Button type="submit" variant="contained">
-          Contained
+    <div className="mt-2">
+    <Button type="submit" variant="contained">
+          Enviar
         </Button>
+    </div>
       </form>
     </>
   );

@@ -1,47 +1,44 @@
 import "../src/App.css";
 import Formulario from "./components/Formulario";
 import React from "react";
-import { useState, useEffect } from "react";
-import { PDFDownloadLink } from "@react-pdf/renderer";
-import PDF from "./components/PDF";
-import { Document, Page } from "@react-pdf/renderer";
-import axios from "axios";
-import { api } from "./lib/api";
 import { FileUpload } from "./components/FileUpload";
 import FormUsers from "./components/FormUsers";
-import { UserData } from "./lib/interfaces";
+
 import GetUsers from "./components/getUsers";
 import GetPdf from "./components/GetPdf";
 
 function App() {
-
-
   return (
     <>
+     <h1 className=" ">Formularios</h1>
       <div className="flex gap-8 justify-center ">
-        <Formulario>
-          <FileUpload type="image" />
+   
+      <Formulario>
+          <FormUsers type="users" />
         </Formulario>
 
         <Formulario>
           <FileUpload type="pdf" />
         </Formulario>
 
+   
+
         <Formulario>
-          <FormUsers type="users" />
+          <FileUpload type="image" />
         </Formulario>
 
- 
-
-     
-        <GetUsers/>
 
 
-        <GetPdf/>
+      </div>
 
-        
+      <h1 className="mt-6 mb-6">Renderizar respuestas </h1>
 
+      <div className="grid grid-cols-2 gap-5 max-w-[1200px] mx-auto">
+
+  
+        <GetUsers />
       
+        <GetPdf />
       </div>
     </>
   );

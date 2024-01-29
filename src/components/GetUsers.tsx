@@ -28,13 +28,17 @@ const GetUsers = () => {
   return (
     <div>
 
-<ul>
+<ul className=''>
+    <h2 className='text-3xl text-center text-blue-400'>Usuarios</h2>
           {users.map((user) => (
             <>
-              <p>Nombre: {user.nombre}</p>
-              <p>Email: {user.numero}</p>
-              <p>Nombre: {user.apellido}</p>
-              <p>Email: {user.fecha}</p>
+            <div className='border mb-3'>
+              <p className='mb-2'>Nombre: {user.nombre}</p>
+              <p className='mb-2'>Email: {user.numero}</p>
+              <p className='mb-2'>Email: {user.apellido}</p>
+              <p className='mb-2'>Fecha: {new Date(user.fecha).toLocaleDateString()}</p>
+
+            </div>
           
             </>
           ))}

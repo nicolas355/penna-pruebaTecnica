@@ -34,10 +34,11 @@ const FormUsers: React.FC<Props> = ({ type }) => {
 
   return (
     <>
-      <h2>asdsadassa</h2>
-      <form action="" onSubmit={handleData}>
+
+      <form action="" className="" onSubmit={handleData}>
+        <h2>Usuarios</h2>
         <input
-          className="mt-2 mb-2 w-full p-2 block"
+          className="mt-2 mb-5 w-full p-2 block"
           type="text"
           placeholder="Nombre"
           name="nombre"
